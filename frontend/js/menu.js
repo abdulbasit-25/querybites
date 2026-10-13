@@ -50,7 +50,7 @@ function getRestaurantId(item) {
 
 function ensureLoggedIn() {
   return api('/auth/me').catch(() => {
-    window.location.href = '/login.html';
+    window.location.href = './login.html';
     return null;
   });
 }
@@ -113,11 +113,11 @@ function renderRestaurants(items = []) {
       if (restaurantFilter) {
         restaurantFilter.value = String(restaurant.RestaurantID || restaurant.restaurantId || '');
       }
-      if (window.location.pathname.endsWith('/menu.html')) {
+      if (window.location.pathname.endsWith('menu.html')) {
         loadFoods();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        window.location.href = `/menu.html?restaurant=${restaurant.RestaurantID || restaurant.restaurantId}`;
+        window.location.href = `./menu.html?restaurant=${restaurant.RestaurantID || restaurant.restaurantId}`;
       }
     });
 
