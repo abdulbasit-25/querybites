@@ -10,7 +10,7 @@ loginForm?.addEventListener('submit', async (event) => {
 	submit.disabled = true;
 	try {
 		await api('/auth/login', { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(loginForm))) });
-		location.href = '/menu.html';
+		location.href = './menu.html';
 	} catch (error) {
 		setNotice(notice, error.message, 'error');
 	} finally {
@@ -27,7 +27,7 @@ registerForm?.addEventListener('submit', async (event) => {
 	submit.disabled = true;
 	try {
 		await api('/auth/register', { method: 'POST', body: JSON.stringify(form) });
-		location.href = '/menu.html';
+		location.href = './menu.html';
 	} catch (error) {
 		setNotice(notice, error.message, 'error');
 	} finally {
@@ -37,5 +37,5 @@ registerForm?.addEventListener('submit', async (event) => {
 
 document.querySelectorAll('[data-logout]').forEach((button) => button.addEventListener('click', async () => {
 	await api('/auth/logout', { method: 'POST' }).catch(() => null);
-	location.href = '/';
+	location.href = './index.html';
 }));
