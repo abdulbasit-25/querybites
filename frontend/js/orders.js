@@ -97,6 +97,6 @@ async function loadOrders() {
     await loadOrders();
   } catch (error) {
     setNotice(notice, error.message, 'error');
-    window.location.href = '/login.html';
+    window.location.href = './login.html';
   }
 })();
