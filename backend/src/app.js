@@ -18,7 +18,14 @@ const allowedOrigins = new Set((process.env.FRONTEND_ORIGIN || 'http://localhost
 	.split(',').map((origin) => origin.trim()).filter(Boolean));
 
 app.disable('x-powered-by');
-app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }));
+app.use(helmet({
+	crossOriginResourcePolicy: { policy: 'same-site' },
+	contentSecurityPolicy: {
+		directives: {
+			imgSrc: ["'self'", 'data:', 'https://images.unsplash.com']
+		}
+	}
+}));
 app.use(cors({ origin(origin, callback) {
 	if (!origin || allowedOrigins.has(origin)) return callback(null, true);
 	return callback(Object.assign(new Error('Origin is not allowed.'), { status: 403 }));
